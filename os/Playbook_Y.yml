@@ -1,2 +1,23 @@
----
-# Playbook Y V0.0
+---\r\n
+- hosts: all\r\n
+  remote_user: root\r\n
+  gather_facts: false\r\n
+  vars:\r\n
+    pckg_a: \"{{ pckg_name }}\"\r\n
+\r\n
+  tasks:\r\n
+    - name: Make ping\r\n
+      ping:\r\n
+    - pause:\r\n
+        seconds: 5",
+    "hosts": {
+        "node": {
+            "hosts": ["127.0.0.1"],
+            "vars": {"ansible_connection": "local"}
+        }
+    },
+    "options": {
+      "async": false,
+      "extra_vars": "pckg_name=RdRand",
+      "skip_tags": "reboot"
+    }
