@@ -1,0 +1,27 @@
+{
+    "playbook": "
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+    name_connection_factory: \"{{ connection_factory }}\",
+    name_jms_server_connect_factory: \"{{ name_jms_server }}\",
+    advanced_targeting: \"{{ advanced_targeting }}\"
+  tasks:
+    - name: Create a connection factory
+      ping:
+    - pause:
+        seconds: 5",
+    "hosts": {
+        "node": {
+            "hosts": ["127.0.0.1"],
+            "vars": {"ansible_connection": "local"}
+        }
+    },
+    "options": {
+      "async": false,
+      "extra_vars": "connection_factory=TestConnectionFactory", "name_jms_server=jms/TestConnectionFactory", "advanced_targeting=TestSubdeployment",
+      "skip_tags": "reboot"
+    }
+}

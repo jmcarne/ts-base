@@ -1,0 +1,26 @@
+{
+    "playbook": "
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+    name_subdeployment: \"{{ subdeployment }}\",
+    select_target_subdeployment: \"{{ target_subdeployment }}\"
+  tasks:
+    - name: Create a subdeployment
+      ping:
+    - pause:
+        seconds: 5",
+    "hosts": {
+        "node": {
+            "hosts": ["127.0.0.1"],
+            "vars": {"ansible_connection": "local"}
+        }
+    },
+    "options": {
+      "async": false,
+      "extra_vars": "subdeployment=TestSubdeployment", "target_subdeployment=TestJMSServer",
+      "skip_tags": "reboot"
+    }
+}

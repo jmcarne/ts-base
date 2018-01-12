@@ -1,0 +1,27 @@
+{
+    "playbook": "
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+    name_jms_module: \"{{ jms_module }}\",
+    target: \"{{ target }}\",
+    add_resources_JMS_module: \"{{ add_resources_JMS_module }}\",
+  tasks:
+    - name: Create JMS Module
+      ping:
+    - pause:
+        seconds: 5",
+    "hosts": {
+        "node": {
+            "hosts": ["127.0.0.1"],
+            "vars": {"ansible_connection": "local"}
+        }
+    },
+    "options": {
+      "async": false,
+      "extra_vars": "jms_module=TestJMSModule", "target=soa_server1", "add_resources_JMS_module=No",
+      "skip_tags": "reboot"
+    }
+}
