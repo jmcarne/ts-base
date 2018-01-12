@@ -1,0 +1,27 @@
+{
+    "playbook": "
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+    name_jms: \"{{ jms }}\", 
+    persistent_store: \"{{ store }}\", 
+    target: \"{{ target }}\"
+  tasks:
+    - name: Create a JMS Server
+      ping:
+    - pause:
+        seconds: 5",
+    "hosts": {
+        "node": {
+            "hosts": ["127.0.0.1"],
+            "vars": {"ansible_connection": "local"}
+        }
+    },
+    "options": {
+      "async": false,
+      "extra_vars": "jms= TestJMSServer", store="", target="soa_server1" 
+      "skip_tags": "reboot"
+    }
+}

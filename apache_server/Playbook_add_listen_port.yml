@@ -1,0 +1,13 @@
+---
+# Playbook Z_WLS_WAS V0.0
+# This playbook creates users in RHEL 7
+- name: Add listen port in configuration file httpd.conf
+#  hosts: weblogic
+  sudo: True
+
+  vars_files:
+    # Operating Systems defined variables for infrastructure
+    - all_listen_port.yml
+
+#  roles:
+#    - role: apache_server
