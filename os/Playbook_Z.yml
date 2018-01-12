@@ -1,2 +1,13 @@
 ---
 # Playbook Z V0.0
+# This playbook creates users in RHEL 7
+- name: Create users in Operating System RHEL 7
+#  hosts: weblogic
+  sudo: True
+
+  vars_files:
+    # Operating Systems defined variables for infrastructure
+    - all_Z_OS.yml
+
+#  roles:
+#    - role: os

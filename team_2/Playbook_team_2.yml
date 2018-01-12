@@ -1,0 +1,25 @@
+{
+    "playbook": "
+---
+- hosts: all
+  remote_user: root
+  gather_facts: false
+  vars:
+    username: \"{{ user }}\"
+  tasks:
+    - name: Execute task 1 Team 2
+      ping:
+    - pause:
+        seconds: 5",
+    "hosts": {
+        "node": {
+            "hosts": ["127.0.0.1"],
+            "vars": {"ansible_connection": "local"}
+        }
+    },
+    "options": {
+      "async": false,
+      "extra_vars": "user=toni",
+      "skip_tags": "reboot"
+    }
+}
